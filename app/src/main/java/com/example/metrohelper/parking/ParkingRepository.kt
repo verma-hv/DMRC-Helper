@@ -11,7 +11,6 @@ class ParkingRepository(context: Context) {
         val facilities = dao.getParkingByStationName(stationName)
         return facilities.map { facility ->
             ParkingInfo(
-                exists = true,
                 stationName = facility.station,
                 line = facility.line,
                 contractorName = facility.contractor,
@@ -23,7 +22,6 @@ class ParkingRepository(context: Context) {
     suspend fun getParkingInfoById(stationId: Int): ParkingInfo? {
         val facility = dao.getParkingByStationId(stationId) ?: return null
         return ParkingInfo(
-            exists = true,
             stationName = facility.station,
             line = facility.line,
             contractorName = facility.contractor,
