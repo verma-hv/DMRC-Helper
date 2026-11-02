@@ -1,0 +1,1364 @@
+[
+  {
+    "Station": "Adarsh Nagar",
+    "Line": "Yellow Line",
+    "Latitude": 28.7144008,
+    "Longitude": 77.1672884
+  },
+  {
+    "Station": "AIIMS",
+    "Line": "Yellow Line",
+    "Latitude": 28.5668602,
+    "Longitude": 77.2078058
+  },
+  {
+    "Station": "Akshardham",
+    "Line": "Blue Line",
+    "Latitude": 28.61784195,
+    "Longitude": 77.27948814325397
+  },
+  {
+    "Station": "Anand Vihar ISBT",
+    "Line": "Blue Line",
+    "Latitude": 28.6467533,
+    "Longitude": 77.3180037
+  },
+  {
+    "Station": "Arjan Garh",
+    "Line": "Yellow Line",
+    "Latitude": 28.4807352,
+    "Longitude": 77.1257622
+  },
+  {
+    "Station": "Arthala",
+    "Line": "Red Line",
+    "Latitude": 28.676999,
+    "Longitude": 77.3918919
+  },
+  {
+    "Station": "Ashok Park Main",
+    "Line": "Green Line",
+    "Latitude": 28.6716045,
+    "Longitude": 77.155291
+  },
+  {
+    "Station": "Ashram",
+    "Line": "Pink Line",
+    "Latitude": 28.5724231,
+    "Longitude": 77.2585979
+  },
+  {
+    "Station": "Azadpur",
+    "Line": "Yellow Line",
+    "Latitude": 28.7076568,
+    "Longitude": 77.1755473
+  },
+  {
+    "Station": "Badarpur Border",
+    "Line": "Violet Line",
+    "Latitude": 28.4904999,
+    "Longitude": 77.3040379
+  },
+  {
+    "Station": "Badkhal Mor",
+    "Line": "Violet Line",
+    "Latitude": 28.4804,
+    "Longitude": 77.3047
+  },
+  {
+    "Station": "Bahadurgarh City",
+    "Line": "Green Line",
+    "Latitude": 28.6907847,
+    "Longitude": 76.9354851
+  },
+  {
+    "Station": "Barakhambha Road",
+    "Line": "Blue Line",
+    "Latitude": 28.6297676,
+    "Longitude": 77.2250046
+  },
+  {
+    "Station": "Bata Chowk",
+    "Line": "Violet Line",
+    "Latitude": 28.3858361,
+    "Longitude": 77.313462
+  },
+  {
+    "Station": "Bhikaji Cama Place",
+    "Line": "Pink Line",
+    "Latitude": 28.56790025,
+    "Longitude": 77.18701648353385
+  },
+  {
+    "Station": "Botanical Garden",
+    "Line": "Blue Line",
+    "Latitude": 28.5638964,
+    "Longitude": 77.334332
+  },
+  {
+    "Station": "Brigadier Hoshiyar Singh",
+    "Line": "Green Line",
+    "Latitude": 28.6974603,
+    "Longitude": 76.9192027
+  },
+  {
+    "Station": "Central Secretariat",
+    "Line": "Yellow Line",
+    "Latitude": 28.6158794,
+    "Longitude": 77.2122822
+  },
+  {
+    "Station": "Chandni Chowk",
+    "Line": "Yellow Line",
+    "Latitude": 28.6605039,
+    "Longitude": 77.2297797
+  },
+  {
+    "Station": "Chawri Bazar",
+    "Line": "Yellow Line",
+    "Latitude": 28.6501605,
+    "Longitude": 77.2295008
+  },
+  {
+    "Station": "Chhatarpur",
+    "Line": "Yellow Line",
+    "Latitude": 28.5067242,
+    "Longitude": 77.1750019
+  },
+  {
+    "Station": "Chirag Delhi",
+    "Line": "Magenta Line",
+    "Latitude": 28.5381411,
+    "Longitude": 77.2280694
+  },
+  {
+    "Station": "Civil Lines",
+    "Line": "Yellow Line",
+    "Latitude": 28.6768508,
+    "Longitude": 77.2250299
+  },
+  {
+    "Station": "Dabri Mor-Janakpuri South",
+    "Line": "Magenta Line",
+    "Latitude": 28.6157555,
+    "Longitude": 77.085178
+  },
+  {
+    "Station": "Dashrath Puri",
+    "Line": "Magenta Line",
+    "Latitude": 28.6018751,
+    "Longitude": 77.0823561
+  },
+  {
+    "Station": "Delhi Aerocity",
+    "Line": "Orange Line",
+    "Latitude": 28.5487982,
+    "Longitude": 77.1208089
+  },
+  {
+    "Station": "Delhi Cantonment",
+    "Line": "Pink Line",
+    "Latitude": 28.5938331,
+    "Longitude": 77.13497891459929
+  },
+  {
+    "Station": "Delhi Gate",
+    "Line": "Violet Line",
+    "Latitude": 28.6392036,
+    "Longitude": 77.2407823
+  },
+  {
+    "Station": "Dhaula Kuan",
+    "Line": "Orange Line",
+    "Latitude": 28.5918905,
+    "Longitude": 77.1617034
+  },
+  {
+    "Station": "Dilshad Garden",
+    "Line": "Red Line",
+    "Latitude": 28.67588615,
+    "Longitude": 77.32143997586601
+  },
+  {
+    "Station": "Durgabai Deshmukh South Campus",
+    "Line": "Pink Line",
+    "Latitude": 28.5894384,
+    "Longitude": 77.1690817
+  },
+  {
+    "Station": "Dwarka",
+    "Line": "Blue Line",
+    "Latitude": 28.5771915,
+    "Longitude": 77.0442935
+  },
+  {
+    "Station": "Dwarka Mor",
+    "Line": "Blue Line",
+    "Latitude": 28.61931,
+    "Longitude": 77.0332792
+  },
+  {
+    "Station": "Dwarka Sector 8",
+    "Line": "Blue Line",
+    "Latitude": 28.5656109,
+    "Longitude": 77.0670366
+  },
+  {
+    "Station": "Dwarka Sector 9",
+    "Line": "Blue Line",
+    "Latitude": 28.574272,
+    "Longitude": 77.0653316
+  },
+  {
+    "Station": "Dwarka Sector 10",
+    "Line": "Blue Line",
+    "Latitude": 28.5810577,
+    "Longitude": 77.0574996
+  },
+  {
+    "Station": "Dwarka Sector 11",
+    "Line": "Blue Line",
+    "Latitude": 28.5864469,
+    "Longitude": 77.0494375
+  },
+  {
+    "Station": "Dwarka Sector 12",
+    "Line": "Blue Line",
+    "Latitude": 28.5922362,
+    "Longitude": 77.0407315
+  },
+  {
+    "Station": "Dwarka Sector 13",
+    "Line": "Blue Line",
+    "Latitude": 28.597009,
+    "Longitude": 77.0335407
+  },
+  {
+    "Station": "Dwarka Sector 14",
+    "Line": "Blue Line",
+    "Latitude": 28.60225285,
+    "Longitude": 77.02595656497819
+  },
+  {
+    "Station": "Dwarka Sector 21",
+    "Line": "Blue Line",
+    "Latitude": 28.5518376,
+    "Longitude": 77.0586489
+  },
+  {
+    "Station": "East Azad Nagar",
+    "Line": "Pink Line",
+    "Latitude": 28.6646964,
+    "Longitude": 77.284881
+  },
+  {
+    "Station": "East Vinod Nagar – Mayur Vihar-II",
+    "Line": "Pink Line",
+    "Latitude": 28.6200437,
+    "Longitude": 77.3054069
+  },
+  {
+    "Station": "Escorts Mujesar",
+    "Line": "Violet Line",
+    "Latitude": 28.3702344,
+    "Longitude": 77.3149203
+  },
+  {
+    "Station": "ESI Hospital",
+    "Line": "Pink Line",
+    "Latitude": 28.6580737,
+    "Longitude": 77.1272678
+  },
+  {
+    "Station": "Ghevra",
+    "Line": "Green Line",
+    "Latitude": 28.6852384,
+    "Longitude": 76.9961591
+  },
+  {
+    "Station": "Ghitorni",
+    "Line": "Yellow Line",
+    "Latitude": 28.493751,
+    "Longitude": 77.1491866
+  },
+  {
+    "Station": "Gokulpuri",
+    "Line": "Pink Line",
+    "Latitude": 28.7024752,
+    "Longitude": 77.2861253
+  },
+  {
+    "Station": "Golf Course",
+    "Line": "Rapid Metro Gurgaon",
+    "Latitude": 28.59778075,
+    "Longitude": 77.15981693149558
+  },
+  {
+    "Station": "Govind Puri",
+    "Line": "Violet Line",
+    "Latitude": 28.5443766,
+    "Longitude": 77.264266
+  },
+  {
+    "Station": "Greater Kailash",
+    "Line": "Magenta Line",
+    "Latitude": 28.5418777,
+    "Longitude": 77.2384553
+  },
+  {
+    "Station": "Green Park",
+    "Line": "Yellow Line",
+    "Latitude": 28.5585815,
+    "Longitude": 77.2067183
+  },
+  {
+    "Station": "GTB Nagar",
+    "Line": "Yellow Line",
+    "Latitude": 28.6981317,
+    "Longitude": 77.2064113
+  },
+  {
+    "Station": "Guru Dronacharya",
+    "Line": "Yellow Line",
+    "Latitude": 28.4820212,
+    "Longitude": 77.1022685
+  },
+  {
+    "Station": "Haiderpur",
+    "Line": "Yellow Line",
+    "Latitude": 28.7301214,
+    "Longitude": 77.14940289658404
+  },
+  {
+    "Station": "Harkesh Nagar Okhla",
+    "Line": "Violet Line",
+    "Latitude": 28.5431246,
+    "Longitude": 77.2755616
+  },
+  {
+    "Station": "Hauz Khas",
+    "Line": "Yellow Line",
+    "Latitude": 28.5442564,
+    "Longitude": 77.2067072
+  },
+  {
+    "Station": "Hazrat Nizamuddin",
+    "Line": "Pink Line",
+    "Latitude": 28.5887494,
+    "Longitude": 77.2572494
+  },
+  {
+    "Station": "Hindon",
+    "Line": "Red Line",
+    "Latitude": 28.6947,
+    "Longitude": 77.4106
+  },
+  {
+    "Station": "HUDA City Centre",
+    "Line": "Yellow Line",
+    "Latitude": 28.4593429,
+    "Longitude": 77.0726571
+  },
+  {
+    "Station": "IFFCO Chowk",
+    "Line": "Yellow Line",
+    "Latitude": 28.4723277,
+    "Longitude": 77.0724222
+  },
+  {
+    "Station": "INA",
+    "Line": "Yellow Line",
+    "Latitude": 28.57440755,
+    "Longitude": 77.21024148189088
+  },
+  {
+    "Station": "Inderlok",
+    "Line": "Red Line",
+    "Latitude": 28.6517178,
+    "Longitude": 77.2219388
+  },
+  {
+    "Station": "Indira Gandhi International Airport",
+    "Line": "Orange Line",
+    "Latitude": 28.55489735,
+    "Longitude": 77.08467458266915
+  },
+  {
+    "Station": "Indraprastha",
+    "Line": "Blue Line",
+    "Latitude": 28.6206019,
+    "Longitude": 77.249551
+  },
+  {
+    "Station": "IP Extension",
+    "Line": "Pink Line",
+    "Latitude": 28.6288991,
+    "Longitude": 77.31019787919774
+  },
+  {
+    "Station": "ITO",
+    "Line": "Violet Line",
+    "Latitude": 28.6305091,
+    "Longitude": 77.2414363
+  },
+  {
+    "Station": "Jaffrabad",
+    "Line": "Pink Line",
+    "Latitude": 28.6826822,
+    "Longitude": 77.2748055
+  },
+  {
+    "Station": "Jahangirpuri",
+    "Line": "Yellow Line",
+    "Latitude": 28.7259717,
+    "Longitude": 77.162658
+  },
+  {
+    "Station": "Jama Masjid",
+    "Line": "Violet Line",
+    "Latitude": 28.65001015,
+    "Longitude": 77.23767616659065
+  },
+  {
+    "Station": "Jamia Millia Islamia",
+    "Line": "Magenta Line",
+    "Latitude": 28.55849025,
+    "Longitude": 77.28116473551759
+  },
+  {
+    "Station": "Janakpuri East",
+    "Line": "Blue Line",
+    "Latitude": 28.633021,
+    "Longitude": 77.086757
+  },
+  {
+    "Station": "Janakpuri West",
+    "Line": "Blue Line",
+    "Latitude": 28.6289502,
+    "Longitude": 77.0779235
+  },
+  {
+    "Station": "Jangpura",
+    "Line": "Violet Line",
+    "Latitude": 28.58245705,
+    "Longitude": 77.2415000727384
+  },
+  {
+    "Station": "Janpath",
+    "Line": "Violet Line",
+    "Latitude": 28.6088598,
+    "Longitude": 77.2181649
+  },
+  {
+    "Station": "Jasola Apollo",
+    "Line": "Violet Line",
+    "Latitude": 28.5384251,
+    "Longitude": 77.2830377
+  },
+  {
+    "Station": "Jasola Vihar Shaheen Bagh",
+    "Line": "Magenta Line",
+    "Latitude": 28.5458279,
+    "Longitude": 77.2966578
+  },
+  {
+    "Station": "Jawaharlal Nehru Stadium",
+    "Line": "Violet Line",
+    "Latitude": 28.58337705,
+    "Longitude": 77.23354040287734
+  },
+  {
+    "Station": "Jhandewalan",
+    "Line": "Blue Line",
+    "Latitude": 28.6443188,
+    "Longitude": 77.1999165
+  },
+  {
+    "Station": "Jhilmil",
+    "Line": "Red Line",
+    "Latitude": 28.6757033,
+    "Longitude": 77.31250457549734
+  },
+  {
+    "Station": "Johari Enclave",
+    "Line": "Pink Line",
+    "Latitude": 28.7232,
+    "Longitude": 77.2892
+  },
+  {
+    "Station": "Jor Bagh",
+    "Line": "Yellow Line",
+    "Latitude": 28.58823925,
+    "Longitude": 77.21652774187173
+  },
+  {
+    "Station": "Kailash Colony",
+    "Line": "Violet Line",
+    "Latitude": 28.5530522,
+    "Longitude": 77.2429694
+  },
+  {
+    "Station": "Kalindi Kunj",
+    "Line": "Magenta Line",
+    "Latitude": 28.5452187,
+    "Longitude": 77.3059891
+  },
+  {
+    "Station": "Kalkaji Mandir",
+    "Line": "Violet Line",
+    "Latitude": 28.5497752,
+    "Longitude": 77.2606671
+  },
+  {
+    "Station": "Kanhaiya Nagar",
+    "Line": "Red Line",
+    "Latitude": 28.6800635,
+    "Longitude": 77.1648445
+  },
+  {
+    "Station": "Karkarduma",
+    "Line": "Blue Line",
+    "Latitude": 28.6491622,
+    "Longitude": 77.3062081096126
+  },
+  {
+    "Station": "Karkarduma Court",
+    "Line": "Pink Line",
+    "Latitude": 28.6536001,
+    "Longitude": 77.2957877
+  },
+  {
+    "Station": "Karol Bagh",
+    "Line": "Blue Line",
+    "Latitude": 28.6441866,
+    "Longitude": 77.189132
+  },
+  {
+    "Station": "Kashmere Gate",
+    "Line": "Red Line",
+    "Latitude": 28.6517178,
+    "Longitude": 77.2219388
+  },
+  {
+    "Station": "Kaushambi",
+    "Line": "Blue Line",
+    "Latitude": 28.6453286,
+    "Longitude": 77.3243485
+  },
+  {
+    "Station": "Keshav Puram",
+    "Line": "Red Line",
+    "Latitude": 28.6889264,
+    "Longitude": 77.1616833
+  },
+  {
+    "Station": "Khan Market",
+    "Line": "Violet Line",
+    "Latitude": 28.6001354,
+    "Longitude": 77.22649064087364
+  },
+  {
+    "Station": "Kirti Nagar",
+    "Line": "Blue Line",
+    "Latitude": 28.6532807,
+    "Longitude": 77.1417729
+  },
+  {
+    "Station": "Krishna Nagar",
+    "Line": "Pink Line",
+    "Latitude": 28.6578461,
+    "Longitude": 77.2901853
+  },
+  {
+    "Station": "Kohat Enclave",
+    "Line": "Red Line",
+    "Latitude": 28.6980415,
+    "Longitude": 77.1405393
+  },
+  {
+    "Station": "Lajpat Nagar",
+    "Line": "Violet Line",
+    "Latitude": 28.57060215,
+    "Longitude": 77.23653027838046
+  },
+  {
+    "Station": "Lal Qila",
+    "Line": "Violet Line",
+    "Latitude": 28.6569,
+    "Longitude": 77.2366
+  },
+  {
+    "Station": "Laxmi Nagar",
+    "Line": "Blue Line",
+    "Latitude": 28.63055515,
+    "Longitude": 77.2776331681994
+  },
+  {
+    "Station": "Lok Kalyan Marg",
+    "Line": "Yellow Line",
+    "Latitude": 28.598385,
+    "Longitude": 77.2029964
+  },
+  {
+    "Station": "Madipur",
+    "Line": "Green Line",
+    "Latitude": 28.6764752,
+    "Longitude": 77.1193599
+  },
+  {
+    "Station": "Maharaja Surajmal Stadium",
+    "Line": "Green Line",
+    "Latitude": 28.6820,
+    "Longitude": 77.0560
+  },
+  {
+    "Station": "Majlis Park",
+    "Line": "Pink Line",
+    "Latitude": 28.7244312,
+    "Longitude": 77.181964
+  },
+  {
+    "Station": "Major Mohit Sharma",
+    "Line": "Red Line",
+    "Latitude": 28.6776112,
+    "Longitude": 77.3581426
+  },
+  {
+    "Station": "Malviya Nagar",
+    "Line": "Yellow Line",
+    "Latitude": 28.5339201,
+    "Longitude": 77.2124474
+  },
+  {
+    "Station": "Mandawali West Vinod Nagar",
+    "Line": "Pink Line",
+    "Latitude": 28.6249712,
+    "Longitude": 77.3044906
+  },
+  {
+    "Station": "Mandi House",
+    "Line": "Blue Line",
+    "Latitude": 28.6255556,
+    "Longitude": 77.234195
+  },
+  {
+    "Station": "Mansarovar Park",
+    "Line": "Red Line",
+    "Latitude": 28.6757386,
+    "Longitude": 77.300102
+  },
+  {
+    "Station": "Maujpur-Babarpur",
+    "Line": "Pink Line",
+    "Latitude": 28.69197845,
+    "Longitude": 77.27962396808854
+  },
+  {
+    "Station": "Mayapuri",
+    "Line": "Pink Line",
+    "Latitude": 28.6371795,
+    "Longitude": 77.1297333
+  },
+  {
+    "Station": "Mayur Vihar -I",
+    "Line": "Blue Line",
+    "Latitude": 28.603133,
+    "Longitude": 77.2925892
+  },
+  {
+    "Station": "Mayur Vihar Extension",
+    "Line": "Blue Line",
+    "Latitude": 28.59415815,
+    "Longitude": 77.29458935
+  },
+  {
+    "Station": "Mayur Vihar Pocket I",
+    "Line": "Pink Line",
+    "Latitude": 28.6058619,
+    "Longitude": 77.2987023
+  },
+  {
+    "Station": "Mewala Maharajpur",
+    "Line": "Violet Line",
+    "Latitude": 28.4418747,
+    "Longitude": 77.3023001
+  },
+  {
+    "Station": "MG Road",
+    "Line": "Yellow Line",
+    "Latitude": 28.4794579,
+    "Longitude": 77.0804652
+  },
+  {
+    "Station": "Model Town",
+    "Line": "Yellow Line",
+    "Latitude": 28.7027136,
+    "Longitude": 77.1939912
+  },
+  {
+    "Station": "Mohan Estate",
+    "Line": "Violet Line",
+    "Latitude": 28.5195895,
+    "Longitude": 77.29458455034757
+  },
+  {
+    "Station": "Mohan Nagar",
+    "Line": "Red Line",
+    "Latitude": 28.6785,
+    "Longitude": 77.3839
+  },
+  {
+    "Station": "Moolchand",
+    "Line": "Violet Line",
+    "Latitude": 28.5644043,
+    "Longitude": 77.2342783
+  },
+  {
+    "Station": "Moti Nagar",
+    "Line": "Blue Line",
+    "Latitude": 28.657859,
+    "Longitude": 77.1424288
+  },
+  {
+    "Station": "Mundka",
+    "Line": "Green Line",
+    "Latitude": 28.6824341,
+    "Longitude": 77.0305741
+  },
+  {
+    "Station": "Mundka Industrial Area",
+    "Line": "Green Line",
+    "Latitude": 28.6834491,
+    "Longitude": 77.0171333
+  },
+  {
+    "Station": "Munirka",
+    "Line": "Magenta Line",
+    "Latitude": 28.554886,
+    "Longitude": 77.1710841
+  },
+  {
+    "Station": "Najafgarh",
+    "Line": "Grey Line",
+    "Latitude": 28.612304,
+    "Longitude": 76.9823908
+  },
+  {
+    "Station": "Nangli",
+    "Line": "Grey Line",
+    "Latitude": 28.6173003,
+    "Longitude": 77.0104375
+  },
+  {
+    "Station": "Nangloi",
+    "Line": "Green Line",
+    "Latitude": 28.6824007,
+    "Longitude": 77.0647319
+  },
+  {
+    "Station": "Nangloi Railway Station",
+    "Line": "Green Line",
+    "Latitude": 28.6822009,
+    "Longitude": 77.0562463
+  },
+  {
+    "Station": "Naraina Vihar",
+    "Line": "Pink Line",
+    "Latitude": 28.6273375,
+    "Longitude": 77.1403175
+  },
+  {
+    "Station": "Nawada",
+    "Line": "Blue Line",
+    "Latitude": 28.6202758,
+    "Longitude": 77.0450787
+  },
+  {
+    "Station": "Neelam Chowk Ajronda",
+    "Line": "Violet Line",
+    "Latitude": 28.3974824,
+    "Longitude": 77.3123599
+  },
+  {
+    "Station": "Nehru Enclave",
+    "Line": "Magenta Line",
+    "Latitude": 28.5460584,
+    "Longitude": 77.2515057
+  },
+  {
+    "Station": "Nehru Place",
+    "Line": "Violet Line",
+    "Latitude": 28.54925735,
+    "Longitude": 77.25295199508821
+  },
+  {
+    "Station": "Netaji Subhash Place",
+    "Line": "Red Line",
+    "Latitude": 28.69605175,
+    "Longitude": 77.15264042023938
+  },
+  {
+    "Station": "New Ashok Nagar",
+    "Line": "Blue Line",
+    "Latitude": 28.5890885,
+    "Longitude": 77.3015085
+  },
+  {
+    "Station": "New Delhi",
+    "Line": "Yellow Line",
+    "Latitude": 28.6436415,
+    "Longitude": 77.2217373
+  },
+  {
+    "Station": "NHPC Chowk",
+    "Line": "Violet Line",
+    "Latitude": 28.5423,
+    "Longitude": 77.2965
+  },
+  {
+    "Station": "Nirman Vihar",
+    "Line": "Blue Line",
+    "Latitude": 28.63650605,
+    "Longitude": 77.28683488664558
+  },
+  {
+    "Station": "Noida City Centre",
+    "Line": "Blue Line",
+    "Latitude": 28.5743,
+    "Longitude": 77.3560
+  },
+  {
+    "Station": "Noida Electronic City",
+    "Line": "Blue Line",
+    "Latitude": 28.5793538,
+    "Longitude": 77.293303
+  },
+  {
+    "Station": "Noida Sector 15",
+    "Line": "Blue Line",
+    "Latitude": 28.5916,
+    "Longitude": 77.3096
+  },
+  {
+    "Station": "Noida Sector 16",
+    "Line": "Blue Line",
+    "Latitude": 28.5783,
+    "Longitude": 77.3176
+  },
+  {
+    "Station": "Noida Sector 18",
+    "Line": "Blue Line",
+    "Latitude": 28.5707,
+    "Longitude": 77.3243
+  },
+  {
+    "Station": "Noida Sector 34",
+    "Line": "Blue Line",
+    "Latitude": 28.5801,
+    "Longitude": 77.3635
+  },
+  {
+    "Station": "Noida Sector 52",
+    "Line": "Blue Line",
+    "Latitude": 28.5870,
+    "Longitude": 77.3690
+  },
+  {
+    "Station": "Noida Sector 59",
+    "Line": "Blue Line",
+    "Latitude": 28.6072,
+    "Longitude": 77.3723
+  },
+  {
+    "Station": "Noida Sector 61",
+    "Line": "Blue Line",
+    "Latitude": 28.6068,
+    "Longitude": 77.3830
+  },
+  {
+    "Station": "Noida Sector 62",
+    "Line": "Blue Line",
+    "Latitude": 28.6171,
+    "Longitude": 77.3736
+  },
+  {
+    "Station": "Okhla Bird Sanctuary",
+    "Line": "Magenta Line",
+    "Latitude": 28.5529418,
+    "Longitude": 77.321595
+  },
+  {
+    "Station": "Okhla NSIC",
+    "Line": "Magenta Line",
+    "Latitude": 28.5544828,
+    "Longitude": 77.2648487
+  },
+  {
+    "Station": "Okhla Vihar",
+    "Line": "Magenta Line",
+    "Latitude": 28.5613002,
+    "Longitude": 77.2919304
+  },
+  {
+    "Station": "Old Faridabad",
+    "Line": "Violet Line",
+    "Latitude": 28.4126,
+    "Longitude": 77.3127
+  },
+  {
+    "Station": "Palam",
+    "Line": "Magenta Line",
+    "Latitude": 28.5918933,
+    "Longitude": 77.0828242
+  },
+  {
+    "Station": "Panchsheel Park",
+    "Line": "Magenta Line",
+    "Latitude": 28.5433525,
+    "Longitude": 77.2140757
+  },
+  {
+    "Station": "Pandit Shree Ram Sharma",
+    "Line": "Green Line",
+    "Latitude": 28.689281,
+    "Longitude": 76.9511988
+  },
+  {
+    "Station": "Paschim Vihar East",
+    "Line": "Green Line",
+    "Latitude": 28.6773985,
+    "Longitude": 77.1122953
+  },
+  {
+    "Station": "Paschim Vihar West",
+    "Line": "Green Line",
+    "Latitude": 28.6786514,
+    "Longitude": 77.1022255
+  },
+  {
+    "Station": "Patel Chowk",
+    "Line": "Yellow Line",
+    "Latitude": 28.6229664,
+    "Longitude": 77.214031
+  },
+  {
+    "Station": "Patel Nagar",
+    "Line": "Blue Line",
+    "Latitude": 28.6455858,
+    "Longitude": 77.1686983
+  },
+  {
+    "Station": "Peera Garhi",
+    "Line": "Green Line",
+    "Latitude": 28.6798074,
+    "Longitude": 77.0926793
+  },
+  {
+    "Station": "Pitam Pura",
+    "Line": "Red Line",
+    "Latitude": 28.7032676,
+    "Longitude": 77.1322497
+  },
+  {
+    "Station": "Pratap Nagar",
+    "Line": "Red Line",
+    "Latitude": 28.6664902,
+    "Longitude": 77.19933567849505
+  },
+  {
+    "Station": "Preet Vihar",
+    "Line": "Blue Line",
+    "Latitude": 28.6414952,
+    "Longitude": 77.29537442892021
+  },
+  {
+    "Station": "Pul Bangash",
+    "Line": "Red Line",
+    "Latitude": 28.6663751,
+    "Longitude": 77.20752911898111
+  },
+  {
+    "Station": "Punjabi Bagh",
+    "Line": "Green Line",
+    "Latitude": 28.668945,
+    "Longitude": 77.1324614
+  },
+  {
+    "Station": "Punjabi Bagh West",
+    "Line": "Pink Line",
+    "Latitude": 28.6703201,
+    "Longitude": 77.1420875
+  },
+  {
+    "Station": "Qutab Minar",
+    "Line": "Yellow Line",
+    "Latitude": 28.5128,
+    "Longitude": 77.1865
+  },
+  {
+    "Station": "R.K.Puram",
+    "Line": "Magenta Line",
+    "Latitude": 28.5514261,
+    "Longitude": 77.1847012
+  },
+  {
+    "Station": "Raja Nahar Singh",
+    "Line": "Violet Line",
+    "Latitude": 28.3400192,
+    "Longitude": 77.3164281
+  },
+  {
+    "Station": "Raj Bagh",
+    "Line": "Red Line",
+    "Latitude": 28.6771,
+    "Longitude": 77.3592
+  },
+  {
+    "Station": "Rajdhani Park",
+    "Line": "Green Line",
+    "Latitude": 28.6823085,
+    "Longitude": 77.0439437
+  },
+  {
+    "Station": "Rajendra Place",
+    "Line": "Blue Line",
+    "Latitude": 28.6424955,
+    "Longitude": 77.1782756
+  },
+  {
+    "Station": "Rajiv Chowk",
+    "Line": "Yellow Line",
+    "Latitude": 28.6327804,
+    "Longitude": 77.2196996
+  },
+  {
+    "Station": "Rajouri Garden",
+    "Line": "Blue Line",
+    "Latitude": 28.6421518,
+    "Longitude": 77.11606037769263
+  },
+  {
+    "Station": "Ramakrishna Ashram Marg",
+    "Line": "Blue Line",
+    "Latitude": 28.6392436,
+    "Longitude": 77.2085787
+  },
+  {
+    "Station": "Ramesh Nagar",
+    "Line": "Blue Line",
+    "Latitude": 28.6527444,
+    "Longitude": 77.1316496
+  },
+  {
+    "Station": "Rithala",
+    "Line": "Red Line",
+    "Latitude": 28.7208064,
+    "Longitude": 77.1071813
+  },
+  {
+    "Station": "Rohini East",
+    "Line": "Red Line",
+    "Latitude": 28.7075901,
+    "Longitude": 77.1260386
+  },
+  {
+    "Station": "Rohini Sector 18",
+    "Line": "Yellow Line",
+    "Latitude": 28.7383477,
+    "Longitude": 77.1398323
+  },
+  {
+    "Station": "Rohini West",
+    "Line": "Red Line",
+    "Latitude": 28.7149569,
+    "Longitude": 77.115385
+  },
+  {
+    "Station": "Sadar Bazaar Cantonment",
+    "Line": "Magenta Line",
+    "Latitude": 28.5771509,
+    "Longitude": 77.1111533
+  },
+  {
+    "Station": "Saket",
+    "Line": "Yellow Line",
+    "Latitude": 28.5244107,
+    "Longitude": 77.2137253
+  },
+  {
+    "Station": "Samaypur Badli",
+    "Line": "Yellow Line",
+    "Latitude": 28.7446158,
+    "Longitude": 77.1382654
+  },
+  {
+    "Station": "Sant Surdas (Sihi)",
+    "Line": "Violet Line",
+    "Latitude": 28.3546513,
+    "Longitude": 77.3162264
+  },
+  {
+    "Station": "Sarai",
+    "Line": "Violet Line",
+    "Latitude": 28.4949,
+    "Longitude": 77.3030
+  },
+  {
+    "Station": "Sarita Vihar",
+    "Line": "Violet Line",
+    "Latitude": 28.5286597,
+    "Longitude": 77.28839654806075
+  },
+  {
+    "Station": "Sarojini Nagar",
+    "Line": "Pink Line",
+    "Latitude": 28.5741575,
+    "Longitude": 77.1953703
+  },
+  {
+    "Station": "Satguru Ramsingh Marg",
+    "Line": "Green Line branch",
+    "Latitude": 28.6619327,
+    "Longitude": 77.1574772
+  },
+  {
+    "Station": "Sector 28",
+    "Line": "Rapid Metro Gurgaon",
+    "Latitude": 28.54525655,
+    "Longitude": 77.03257608771955
+  },
+  {
+    "Station": "Seelampur",
+    "Line": "Red Line",
+    "Latitude": 28.6698302,
+    "Longitude": 77.26675403040142
+  },
+  {
+    "Station": "Shadipur",
+    "Line": "Blue Line",
+    "Latitude": 28.6516362,
+    "Longitude": 77.1582947
+  },
+  {
+    "Station": "Shahdara",
+    "Line": "Red Line",
+    "Latitude": 28.6734037,
+    "Longitude": 77.28974036006097
+  },
+  {
+    "Station": "Shaheed Nagar",
+    "Line": "Red Line",
+    "Latitude": 28.6868,
+    "Longitude": 77.3639
+  },
+  {
+    "Station": "Shaheed Sthal",
+    "Line": "Red Line",
+    "Latitude": 28.6706109,
+    "Longitude": 77.4155822
+  },
+  {
+    "Station": "Shakurpur",
+    "Line": "Pink Line",
+    "Latitude": 28.6857668,
+    "Longitude": 77.1496094
+  },
+  {
+    "Station": "Shalimar Bagh",
+    "Line": "Pink Line",
+    "Latitude": 28.71745265,
+    "Longitude": 77.15086654617409
+  },
+  {
+    "Station": "Shankar Vihar",
+    "Line": "Magenta Line",
+    "Latitude": 28.55743865,
+    "Longitude": 77.13966548999556
+  },
+  {
+    "Station": "Shastri Nagar",
+    "Line": "Red Line",
+    "Latitude": 28.66997485,
+    "Longitude": 77.18199977474701
+  },
+  {
+    "Station": "Shastri Park",
+    "Line": "Red Line",
+    "Latitude": 28.6682776,
+    "Longitude": 77.25039874373576
+  },
+  {
+    "Station": "Shiv Vihar",
+    "Line": "Pink Line",
+    "Latitude": 28.61753755,
+    "Longitude": 77.03543016986725
+  },
+  {
+    "Station": "Shivaji Park",
+    "Line": "Green Line",
+    "Latitude": 28.6750317,
+    "Longitude": 77.1304722
+  },
+  {
+    "Station": "Shivaji Stadium",
+    "Line": "Orange Line",
+    "Latitude": 28.6315087,
+    "Longitude": 77.2160589
+  },
+  {
+    "Station": "Shyam Park",
+    "Line": "Red Line",
+    "Latitude": 28.6988072,
+    "Longitude": 77.26846412516488
+  },
+  {
+    "Station": "Sikandarpur",
+    "Line": "Yellow Line",
+    "Latitude": 28.4812704,
+    "Longitude": 77.092999
+  },
+  {
+    "Station": "Sir Vishweshwaraiah Moti Bagh",
+    "Line": "Pink Line",
+    "Latitude": 28.5785326,
+    "Longitude": 77.175741
+  },
+  {
+    "Station": "Subhash Nagar",
+    "Line": "Blue Line",
+    "Latitude": 28.6418074,
+    "Longitude": 77.1087611
+  },
+  {
+    "Station": "Sukhdev Vihar",
+    "Line": "Magenta Line",
+    "Latitude": 28.5597477,
+    "Longitude": 77.2749004
+  },
+  {
+    "Station": "Sultanpur",
+    "Line": "Yellow Line",
+    "Latitude": 28.4616582,
+    "Longitude": 76.8700852
+  },
+  {
+    "Station": "Supreme Court",
+    "Line": "Blue Line",
+    "Latitude": 28.6222879,
+    "Longitude": 77.23943396872133
+  },
+  {
+    "Station": "Tagore Garden",
+    "Line": "Blue Line",
+    "Latitude": 28.6437639,
+    "Longitude": 77.1128454
+  },
+  {
+    "Station": "Terminal 1-IGI Airport",
+    "Line": "Magenta Line",
+    "Latitude": 28.5667,
+    "Longitude": 77.1030
+  },
+  {
+    "Station": "Tikri Border",
+    "Line": "Green Line",
+    "Latitude": 28.6880254,
+    "Longitude": 76.9640828
+  },
+  {
+    "Station": "Tikri Kalan",
+    "Line": "Green Line",
+    "Latitude": 28.6868661,
+    "Longitude": 76.9772069
+  },
+  {
+    "Station": "Tilak Nagar",
+    "Line": "Blue Line",
+    "Latitude": 28.6365482,
+    "Longitude": 77.0964961
+  },
+  {
+    "Station": "Tis Hazari",
+    "Line": "Red Line",
+    "Latitude": 28.6671323,
+    "Longitude": 77.21662796383896
+  },
+  {
+    "Station": "Trilokpuri Sanjay Lake",
+    "Line": "Pink Line",
+    "Latitude": 28.613453,
+    "Longitude": 77.3088549
+  },
+  {
+    "Station": "Tughlakabad Station",
+    "Line": "Violet Line",
+    "Latitude": 28.5023598,
+    "Longitude": 77.2992401
+  },
+  {
+    "Station": "Udyog Bhawan",
+    "Line": "Yellow Line",
+    "Latitude": 28.6105302,
+    "Longitude": 77.2131076
+  },
+  {
+    "Station": "Udyog Nagar",
+    "Line": "Green Line",
+    "Latitude": 28.681103,
+    "Longitude": 77.0808492
+  },
+  {
+    "Station": "Uttam Nagar East",
+    "Line": "Blue Line",
+    "Latitude": 28.6248465,
+    "Longitude": 77.0652861
+  },
+  {
+    "Station": "Uttam Nagar West",
+    "Line": "Blue Line",
+    "Latitude": 28.621757,
+    "Longitude": 77.0557122
+  },
+  {
+    "Station": "Vaishali",
+    "Line": "Blue Line",
+    "Latitude": 28.6440912,
+    "Longitude": 77.0683855826679
+  },
+  {
+    "Station": "Vasant Vihar",
+    "Line": "Magenta Line",
+    "Latitude": 28.56069055,
+    "Longitude": 77.16079073168567
+  },
+  {
+    "Station": "Vidhan Sabha",
+    "Line": "Yellow Line",
+    "Latitude": 28.6863222,
+    "Longitude": 77.2217271
+  },
+  {
+    "Station": "Vinobapuri",
+    "Line": "Pink Line",
+    "Latitude": 28.5669763,
+    "Longitude": 77.2491906
+  },
+  {
+    "Station": "Vishwa Vidyalaya",
+    "Line": "Yellow Line",
+    "Latitude": 28.6950369,
+    "Longitude": 77.2147192
+  },
+  {
+    "Station": "Welcome",
+    "Line": "Red Line",
+    "Latitude": 28.6718,
+    "Longitude": 77.2775
+  },
+  {
+    "Station": "Yamuna Bank",
+    "Line": "Blue Line",
+    "Latitude": 28.6232784,
+    "Longitude": 77.26792404925054
+  }
+]

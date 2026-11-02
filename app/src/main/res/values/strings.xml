@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Metro Helper</string>
+    <string name="metro_map">Metro Map</string>
+    <string name="BookTickets">Book Tickets</string>
+    <string name="AvailableParkings">Available Parkings</string>
+    <string name="AboutApp">About App</string>
+</resources>
