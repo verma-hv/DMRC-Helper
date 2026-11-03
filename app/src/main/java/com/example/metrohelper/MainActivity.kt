@@ -3,16 +3,11 @@ package com.example.metrohelper
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.LocaleManager
 import android.content.Context
-import android.content.ContextWrapper
-import android.content.res.Configuration
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.os.Build
-import android.os.LocaleList
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -35,11 +30,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.ConfirmationNumber
@@ -51,7 +50,7 @@ import androidx.compose.material.icons.filled.MyLocation
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Subway
-import androidx.compose.material3.AlertDialog
+import androidx.compose.material.icons.filled.Train
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -60,7 +59,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
@@ -83,7 +81,6 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -94,6 +91,7 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.metrohelper.ui.theme.MetroHelperTheme
 import com.google.android.gms.common.api.ResolvableApiException
@@ -101,62 +99,22 @@ import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.Priority
-import java.util.Locale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
 import org.json.JSONObject
-import org.osmdroid.config.Configuration as OsmDroidConfiguration
-import org.osmdroid.tileprovider.tilesource.XYTileSource
+import org.osmdroid.config.Configuration
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.Polyline
-import androidx.core.net.toUri
-import androidx.core.content.edit
-import androidx.compose.material.icons.filled.Language
-private object AppLanguage {
-    private const val PREFS_NAME = "dmrc_language_preferences"
-    private const val KEY_LANGUAGE_TAG = "selected_language_tag"
-    private const val DEFAULT_LANGUAGE_TAG = "en"
-
-    fun wrapContext(base: Context): Context {
-        val languageTag = base.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-            .getString(KEY_LANGUAGE_TAG, DEFAULT_LANGUAGE_TAG)
-            ?: DEFAULT_LANGUAGE_TAG
-
-        val locale = Locale.forLanguageTag(languageTag)
-        Locale.setDefault(locale)
-
-        val configuration = Configuration(base.resources.configuration)
-        configuration.setLocale(locale)
-        configuration.setLocales(LocaleList(locale))
-        return base.createConfigurationContext(configuration)
-    }
-
-    fun changeLanguage(activity: Activity, languageTag: String) {
-        activity.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit {
-            putString(KEY_LANGUAGE_TAG, languageTag)
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            val localeManager = activity.getSystemService(LocaleManager::class.java)
-            localeManager.applicationLocales = LocaleList.forLanguageTags(languageTag)
-            // Android 13+ recreates the activity when applicationLocales changes.
-        } else {
-            // Android 7–12 reload resources through attachBaseContext().
-            activity.recreate()
-        }
-    }
-}
-
-private tailrec fun Context.findActivity(): Activity? = when (this) {
-    is Activity -> this
-    is ContextWrapper -> baseContext.findActivity()
-    else -> null
-}
+import org.osmdroid.tileprovider.tilesource.XYTileSource
+data class DashboardItem(
+    val title: String,
+    val icon: androidx.compose.ui.graphics.vector.ImageVector
+)
 
 data class MetroStation(
     val name: String,
@@ -176,15 +134,11 @@ data class ParkingStation(
 
 class MainActivity : ComponentActivity() {
 
-    override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(AppLanguage.wrapContext(newBase))
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // OSMDroid configuration
-        val osmdroidConfig = OsmDroidConfiguration.getInstance()
+        val osmdroidConfig = Configuration.getInstance()
 
         osmdroidConfig.load(
             applicationContext,
@@ -228,11 +182,20 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MetroApp() {
     val navController = rememberNavController()
+    val items = listOf(
+        BottomNavItem("metromap", "Metro Map", Icons.Default.Map),
+        BottomNavItem("neareststation", "Nearby", Icons.Default.LocationOn), // ✅ NEW
+        BottomNavItem("booktickets", "Tickets", Icons.Default.ConfirmationNumber),
+        BottomNavItem("availableparkings", "Parkings", Icons.Default.LocalParking),
+        BottomNavItem("aboutapp", "About App", Icons.Default.Info)
+    )
+
+
     Scaffold(
         contentWindowInsets = WindowInsets(0,0,0,0),
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.app_name)) },
+                title = { Text("DMRC Helper") },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = Color.White
@@ -252,6 +215,13 @@ fun MetroApp() {
         }
     }
 }
+
+data class BottomNavItem(
+    val route: String,
+    val title: String,
+    val icon: androidx.compose.ui.graphics.vector.ImageVector
+)
+
 
 @Composable
 fun NavigationGraph(navController: NavHostController) {
@@ -284,8 +254,6 @@ fun RoutePlannerScreen() {
     var expandedTo by remember { mutableStateOf(false) }
 
     var result by remember { mutableStateOf("") }
-    val routeResultFormat = stringResource(R.string.route_result)
-    val invalidStationsMessage = stringResource(R.string.select_valid_stations)
 
     val filteredFrom = stations.filter {
         it.name.contains(from, ignoreCase = true)
@@ -302,7 +270,7 @@ fun RoutePlannerScreen() {
     ) {
 
         Text(
-            text = stringResource(R.string.route_planner_title),
+            text = "Metro Route Planner",
             fontSize = 26.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFFD32F2F)
@@ -322,10 +290,10 @@ fun RoutePlannerScreen() {
                     from = it
                     expandedFrom = true
                 },
-                label = { Text(stringResource(R.string.from_station)) },
+                label = { Text("From Station") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .menuAnchor(type = MenuAnchorType.PrimaryEditable, enabled = true)
+                    .menuAnchor()
             )
 
             ExposedDropdownMenu(
@@ -360,10 +328,10 @@ fun RoutePlannerScreen() {
                     to = it
                     expandedTo = true
                 },
-                label = { Text(stringResource(R.string.to_station)) },
+                label = { Text("To Station") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .menuAnchor(type = MenuAnchorType.PrimaryEditable, enabled = true)
+                    .menuAnchor()
             )
 
             ExposedDropdownMenu(
@@ -404,21 +372,17 @@ fun RoutePlannerScreen() {
                     val time = (distance * 3).toInt()
                     val fare = (distance * 2).toInt()
 
-                    result = String.format(
-                        java.util.Locale.getDefault(),
-                        routeResultFormat,
-                        distance,
-                        time,
-                        fare
-                    )
+                    result =
+                        "Distance: %.1f km\nEstimated Time: $time mins\nFare: ₹$fare"
+                            .format(distance)
 
                 } else {
-                    result = invalidStationsMessage
+                    result = "Please select valid stations"
                 }
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(stringResource(R.string.find_route))
+            Text("Find Route")
         }
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -430,120 +394,58 @@ fun RoutePlannerScreen() {
     }
 }
 
-data class DashboardUtility(
-    val title: String,
-    val icon: ImageVector,
-    val route: String? = null,
-    val isLanguage: Boolean = false
-)
-
 @Composable
 fun DashboardHomeScreen(navController: NavHostController) {
 
     val context = LocalContext.current
-
-    var showLanguageDialog by remember {
-        mutableStateOf(false)
-    }
-
     val prefs = context.getSharedPreferences("metro_stats", Context.MODE_PRIVATE)
 
-    val hour = remember {
-        java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY)
-    }
-
-    val day = remember {
-        java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_WEEK)
-    }
+    val hour = remember { java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY) }
+    val day = remember { java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_WEEK) }
 
     // Fake stats for now
     val trips = prefs.getInt("trips", 8)
     val savings = trips * 25
 
-    val bestTime = when (hour) {
-        in 8..10 -> stringResource(R.string.rush_hour)
-        in 18..20 -> stringResource(R.string.heavy_rush)
-        in 11..16 -> stringResource(R.string.perfect_time_to_leave)
-        else -> stringResource(R.string.good_time_to_travel)
+    val bestTime = when {
+        hour in 8..10 -> "Rush Hour"
+        hour in 18..20 -> "Heavy Rush "
+        hour in 11..16 -> "Perfect Time To Leave"
+        else -> "Good Time To Travel"
     }
 
-    val crowd = when (hour) {
-        in 8..10 -> stringResource(R.string.very_high)
-        in 18..20 -> stringResource(R.string.high)
-        in 11..16 -> stringResource(R.string.low)
-        else -> stringResource(R.string.medium)
+    val crowd = when {
+        hour in 8..10 -> "Very High"
+        hour in 18..20 -> "High"
+        hour in 11..16 -> "Low"
+        else -> "Medium"
     }
 
     val suggestion = when {
-        day == java.util.Calendar.SUNDAY -> stringResource(R.string.weekend_smooth)
-        hour < 8 -> stringResource(R.string.leave_now_avoid_rush)
-        hour in 8..10 -> stringResource(R.string.use_less_crowded_coach)
-        else -> stringResource(R.string.metro_best_option)
+        day == java.util.Calendar.SUNDAY ->
+            "Weekend travel is smooth today"
+
+        hour < 8 ->
+            "Leave now to avoid rush"
+
+        hour in 8..10 ->
+            "Use less crowded coach"
+
+        else ->
+            "Metro is best option now"
     }
 
-    /*
-     * Add new dashboard features here.
-     * The UI and scrolling adjust automatically.
-     */
-    val utilities = listOf(
-        DashboardUtility(
-            title = stringResource(R.string.metro_map),
-            icon = Icons.Default.Map,
-            route = "metromap"
-        ),
-        DashboardUtility(
-            title = stringResource(R.string.nearby_station),
-            icon = Icons.Default.LocationOn,
-            route = "neareststation"
-        ),
-        DashboardUtility(
-            title = stringResource(R.string.tickets),
-            icon = Icons.Default.ConfirmationNumber,
-            route = "booktickets"
-        ),
-        DashboardUtility(
-            title = stringResource(R.string.route_planner),
-            icon = Icons.Default.Subway,
-            route = "routeplanner"
-        ),
-        DashboardUtility(
-            title = stringResource(R.string.about_app),
-            icon = Icons.Default.Info,
-            route = "aboutapp"
-        ),
-        DashboardUtility(
-            title = stringResource(R.string.parking),
-            icon = Icons.Default.LocalParking,
-            route = "availableparkings"
-        ),
-        DashboardUtility(
-            title = stringResource(R.string.language),
-            icon = Icons.Default.Language,
-            isLanguage = true
-        )
-    )
-
-    /*
-     * One LazyColumn is used for the complete dashboard.
-     * This avoids nested scrolling and also avoids GridItemSpan/maxLineSpan,
-     * which are not available in the Compose version currently used.
-     */
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8F8F8)),
-        contentPadding = PaddingValues(
-            start = 16.dp,
-            end = 16.dp,
-            top = 16.dp,
-            bottom = 32.dp
-        ),
+            .background(Color(0xFFF8F8F8))
+            .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
 
         item {
             Text(
-                text = stringResource(R.string.smart_metro_dashboard),
+                text = "Smart Metro Dashboard",
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFFD32F2F)
@@ -552,91 +454,79 @@ fun DashboardHomeScreen(navController: NavHostController) {
 
         item {
             Text(
-                text = stringResource(R.string.live_travel_intelligence),
+                text = "Live travel intelligence",
                 color = Color.Gray
             )
         }
 
-        item {
-            SmartCard(stringResource(R.string.best_time_to_leave), bestTime)
-        }
+        item { SmartCard("⏰ Best Time To Leave", bestTime) }
 
-        item {
-            SmartCard(stringResource(R.string.crowd_level), crowd)
-        }
+        item { SmartCard("📈 Crowd Level", crowd) }
 
-        item {
-            SmartCard(stringResource(R.string.smart_advice), suggestion)
-        }
+        item { SmartCard("💡 Smart Advice", suggestion) }
 
-        item {
-            SmartCard(stringResource(R.string.weekly_savings), stringResource(R.string.rupees_saved, savings))
-        }
+        item { SmartCard("💰 Weekly Savings", "₹$savings saved") }
 
-        item {
-            SmartCard(stringResource(R.string.trips_this_week), stringResource(R.string.trips_completed, trips))
-        }
+        item { SmartCard("🚇 Trips This Week", "$trips trips completed") }
 
         item {
             Text(
-                text = stringResource(R.string.utilities),
-                fontSize = 26.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(
-                    top = 4.dp,
-                    bottom = 4.dp
-                )
+                text = "Utilities",
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold
             )
         }
 
-        /*
-         * Split the utility list into rows of two.
-         * This automatically works for 6, 8, 10, 20+ cards.
-         */
-        items(utilities.chunked(2)) { rowItems ->
+        item {
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(520.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                userScrollEnabled = false
+            ){
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
 
-                rowItems.forEach { utility ->
-
-                    DashboardNavCard(
-                        title = utility.title,
-                        icon = utility.icon,
-                        modifier = Modifier.weight(1f),
-                        onClick = {
-                            if (utility.isLanguage) {
-                                showLanguageDialog = true
-                            } else {
-                                utility.route?.let { route ->
-                                    navController.navigate(route)
-                                }
-                            }
-                        }
-                    )
+                item {
+                    DashboardNavCard("Metro Map", Icons.Default.Map) {
+                        navController.navigate("metromap")
+                    }
                 }
 
-                // Keeps the final card aligned if the number of cards is odd.
-                if (rowItems.size == 1) {
-                    Spacer(
-                        modifier = Modifier.weight(1f)
-                    )
+                item {
+                    DashboardNavCard("Nearby", Icons.Default.LocationOn) {
+                        navController.navigate("neareststation")
+                    }
+                }
+
+                item {
+                    DashboardNavCard("Tickets", Icons.Default.ConfirmationNumber) {
+                        navController.navigate("booktickets")
+                    }
+                }
+                item { DashboardNavCard("Route Planner", Icons.Default.Subway) {
+                    navController.navigate("routeplanner")
+                    }
+                }
+                item {
+                    DashboardNavCard("About App", Icons.Default.Info) {
+                        navController.navigate("aboutapp")
+                    }
+                }
+
+                item {
+                    DashboardNavCard("Parking", Icons.Default.LocalParking) {
+                        navController.navigate("availableparkings")
+                    }
                 }
             }
         }
-    }
 
-    if (showLanguageDialog) {
-        LanguageSelector(
-            onDismiss = {
-                showLanguageDialog = false
-            }
-        )
+        item { Spacer(modifier = Modifier.height(20.dp)) }
     }
 }
-
 
 @Composable
 fun SmartCard(title: String, value: String) {
@@ -678,11 +568,10 @@ fun SmartCard(title: String, value: String) {
 fun DashboardNavCard(
     title: String,
     icon: ImageVector,
-    modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
     Card(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
             .height(140.dp)
             .clickable { onClick() },
@@ -753,7 +642,7 @@ fun MetroMapScreen() {
 
         Image(
             painter = painterResource(id = R.drawable.mapview),
-            contentDescription = stringResource(R.string.metro_map),
+            contentDescription = "Delhi Metro Map",
             modifier = Modifier
                 .fillMaxSize()
                 .graphicsLayer(
@@ -918,7 +807,6 @@ fun NearestStationScreen() {
 
     val context = LocalContext.current
     val activity = context as Activity
-    val youAreHereLabel = stringResource(R.string.you_are_here)
 
     var userLocation by remember {
         mutableStateOf<GeoPoint?>(null)
@@ -1040,6 +928,7 @@ fun NearestStationScreen() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
+        ->
 
         // =====================================
         // MAP
@@ -1087,7 +976,7 @@ fun NearestStationScreen() {
 
                     userMarker.position = userPoint
 
-                    userMarker.title = youAreHereLabel
+                    userMarker.title = "You are here"
 
                     mapView.overlays.add(userMarker)
                 }
@@ -1216,14 +1105,14 @@ fun NearestStationScreen() {
                 Column {
 
                     Text(
-                        text = stringResource(R.string.nearby_metro),
+                        text = "Nearby Metro",
                         fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFFD32F2F)
                     )
 
                     Text(
-                        text = stringResource(R.string.finding_best_station),
+                        text = "Finding the best station for you",
                         fontSize = 12.sp,
                         color = Color.Gray
                     )
@@ -1352,7 +1241,7 @@ fun NearestStationScreen() {
                         Column {
 
                             Text(
-                                text = stringResource(R.string.nearest_metro_station),
+                                text = "Nearest Metro Station",
                                 fontSize = 12.sp,
                                 color = Color.Gray
                             )
@@ -1376,11 +1265,11 @@ fun NearestStationScreen() {
                     ) {
 
                         InfoChip(
-                            stringResource(R.string.distance_km, distance)
+                            "📍 %.1f km".format(distance)
                         )
 
                         InfoChip(
-                            stringResource(R.string.estimated_minutes, estimatedTime)
+                            "⏱ ~${estimatedTime} min"
                         )
                     }
                 }
@@ -1463,7 +1352,6 @@ fun InfoChip(text: String) {
 fun BookTicketsScreen() {
 
     val context = LocalContext.current
-    val browserErrorMessage = stringResource(R.string.install_browser_whatsapp)
 
     Column(
         modifier = Modifier
@@ -1473,7 +1361,7 @@ fun BookTicketsScreen() {
     ) {
 
         Text(
-            text = stringResource(R.string.book_metro_tickets),
+            text = "Book Metro Tickets",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 24.dp)
@@ -1482,14 +1370,13 @@ fun BookTicketsScreen() {
         // DMRC Website
         TicketOptionCard(
             icon = Icons.Default.ConfirmationNumber,
-            title = stringResource(R.string.dmrc_official_booking),
-            subtitle = stringResource(R.string.book_via_dmrc_website),
+            title = "DMRC Official Booking",
+            subtitle = "Book via DMRC website",
             backgroundColor = Color(0xFFD32F2F)
         ) {
             openLinkSafely(
                 context,
-                "https://qrticket.dmrc.org/qrapp/",
-                browserErrorMessage
+                "https://qrticket.dmrc.org/qrapp/"
             )
         }
 
@@ -1498,8 +1385,8 @@ fun BookTicketsScreen() {
         // WhatsApp Booking
         TicketOptionCard(
             icon = Icons.Default.Info,
-            title = stringResource(R.string.book_via_whatsapp),
-            subtitle = stringResource(R.string.dmrc_whatsapp_service),
+            title = "Book via WhatsApp",
+            subtitle = "DMRC WhatsApp service",
             backgroundColor = Color(0xFF25D366)
         ) {
 
@@ -1510,30 +1397,54 @@ fun BookTicketsScreen() {
             val whatsappUrl =
                 "https://wa.me/919650855800?text=$encodedMessage"
 
-            openLinkSafely(context, whatsappUrl, browserErrorMessage)
+            openLinkSafely(context, whatsappUrl)
         }
 
     }
 }
-fun openLinkSafely(context: Context, url: String, errorMessage: String) {
+fun openLinkSafely(context: Context, url: String) {
 
     try {
         val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = url.toUri()
+            data = Uri.parse(url)
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
 
         context.startActivity(intent)
 
-    } catch (_: Exception) {
+    } catch (e: Exception) {
 
         Toast.makeText(
             context,
-            errorMessage,
+            "Please install a browser or WhatsApp to continue",
             Toast.LENGTH_LONG
         ).show()
     }
 }
+
+// -------- Google Maps Nearest Loc fun() --------
+/*fun openNearestMetroInMaps(context: Context) {
+
+    try {
+        // Google Maps search intent
+        val uri = Uri.parse("geo:0,0?q=nearest DMRC metro station")
+
+        val intent = Intent(Intent.ACTION_VIEW, uri).apply {
+            setPackage("com.google.android.apps.maps")
+        }
+
+        context.startActivity(intent)
+
+    } catch (e: Exception) {
+
+        // Fallback to browser if Maps not installed
+        openLinkSafely(
+            context,
+            "https://www.google.com/maps/search/nearest+DMRC+metro+station"
+        )
+    }
+} */
+
 
 @Composable
 fun TicketOptionCard(
@@ -1613,7 +1524,7 @@ fun loadParkingStations(context: Context): List<ParkingStation> {
             )
         }
         stations
-    } catch (_: Exception) {
+    } catch (e: Exception) {
         emptyList()
     }
 }
@@ -1646,7 +1557,7 @@ fun AvailableParkingsScreen() {
         if (query.isBlank()) allStations
         else allStations.filter {
             it.station.contains(query, ignoreCase = true) ||
-                    it.line.contains(query, ignoreCase = true)
+                it.line.contains(query, ignoreCase = true)
         }
     }
 
@@ -1657,11 +1568,11 @@ fun AvailableParkingsScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp, vertical = 10.dp),
-            placeholder = { Text(stringResource(R.string.search_station_line)) },
+            placeholder = { Text("Search by station or line…") },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Filled.Search,
-                    contentDescription = stringResource(R.string.search_station_line),
+                    contentDescription = "Search",
                     tint = Color(0xFFD32F2F)
                 )
             },
@@ -1689,14 +1600,14 @@ fun AvailableParkingsScreen() {
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = stringResource(R.string.not_available),
+                        text = "Not Available",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color(0xFFD32F2F)
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = stringResource(R.string.no_parking_contractor, query),
+                        text = "No parking contractor found for\n\"$query\"",
                         fontSize = 14.sp,
                         color = Color.Gray,
                         textAlign = TextAlign.Center
@@ -1794,7 +1705,7 @@ fun ParkingStationCard(station: ParkingStation) {
                         fontWeight = FontWeight.Medium,
                         modifier = Modifier.clickable {
                             val intent = Intent(Intent.ACTION_DIAL).apply {
-                                data = "tel:${station.contact}".toUri()
+                                data = Uri.parse("tel:${station.contact}")
                             }
                             context.startActivity(intent)
                         }
@@ -1807,7 +1718,7 @@ fun ParkingStationCard(station: ParkingStation) {
                             fontWeight = FontWeight.Medium,
                             modifier = Modifier.clickable {
                                 val intent = Intent(Intent.ACTION_DIAL).apply {
-                                    data = "tel:${station.additionalContacts}".toUri()
+                                    data = Uri.parse("tel:${station.additionalContacts}")
                                 }
                                 context.startActivity(intent)
                             }
@@ -1846,21 +1757,21 @@ fun AboutAppScreen() {
         )
 
         Text(
-            stringResource(R.string.smart_delhi_metro_assistant),
+            "Smart Delhi Metro Assistant",
             color = Color.Gray
         )
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
-            stringResource(R.string.about_description),
+            "This app helps users navigate Delhi Metro using route planner, nearest station finder, metro map, ticket booking and parking assistance.",
             textAlign = TextAlign.Center
         )
 
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            stringResource(R.string.developed_by),
+            "Developed By",
             fontWeight = FontWeight.Bold
         )
 
@@ -1874,7 +1785,7 @@ fun AboutAppScreen() {
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            stringResource(R.string.guided_by),
+            "Guided By",
             fontWeight = FontWeight.Bold
         )
 
@@ -1882,12 +1793,12 @@ fun AboutAppScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(stringResource(R.string.version_1_0))
+        Text("Version 1.0")
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
-            stringResource(R.string.disclaimer),
+            "This is an academic project and not officially affiliated with DMRC.",
             color = Color.Gray,
             textAlign = TextAlign.Center
         )
@@ -1895,50 +1806,68 @@ fun AboutAppScreen() {
 }
 
 @Composable
-fun LanguageSelector(
-    onDismiss: () -> Unit
-) {
-    val context = LocalContext.current
-    val languages = listOf(
-        R.string.english to "en",
-        R.string.hindi to "hi",
-        R.string.punjabi to "pa",
-        R.string.bengali to "bn",
-        R.string.tamil to "ta",
-        R.string.telugu to "te",
-        R.string.urdu to "ur"
+fun CenteredText(text: String) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(text, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
+/* Optional: Dashboard-like grid reused later */
+@Composable
+fun DashboardGrid() {
+    val items = listOf(
+        DashboardItem("Plan Journey", Icons.Filled.Subway),
+        DashboardItem("Nearest Station", Icons.Filled.LocationOn),
+        DashboardItem("Live Status", Icons.Filled.Train),
+        DashboardItem("Fare Calculator", Icons.Filled.AccountBalanceWallet)
     )
 
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text(text = stringResource(R.string.select_language)) },
-        text = {
-            Column {
-                languages.forEach { (labelRes, languageTag) ->
-                    Text(
-                        text = stringResource(labelRes),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                val activity = context.findActivity()
-                                onDismiss()
-                                if (activity != null) {
-                                    AppLanguage.changeLanguage(activity, languageTag)
-                                } else {
-                                    Toast.makeText(
-                                        context,
-                                        "Unable to change language. Please restart the app.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            }
-                            .padding(16.dp)
-                    )
-                }
-            }
-        },
-        confirmButton = {}
-    )
+    LazyVerticalGrid(columns = GridCells.Adaptive(160.dp)) {
+        items(items) { item -> DashboardCard(item) }
+    }
+}
+
+@Composable
+fun DashboardCard(item: DashboardItem) {
+    Card(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth()
+            .height(130.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        shape = MaterialTheme.shapes.medium
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(12.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Icon(
+                imageVector = item.icon,
+                contentDescription = item.title,
+                tint = Color(0xFFD32F2F),
+                modifier = Modifier.size(48.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = item.title,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
+    }
+}
+
+@Composable
+fun currentRoute(navController: NavHostController): String? {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    return navBackStackEntry?.destination?.route
 }
 
 @Preview(showBackground = true)
