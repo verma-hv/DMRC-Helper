@@ -230,7 +230,8 @@ data class BottomNavItem(
 fun NavigationGraph(navController: NavHostController) {
     NavHost(navController, startDestination = "dashboard") {
 
-        composable("routeplanner") { RoutePlannerScreen() }
+        composable("routeplanner") { RoutePlannerScreen(navController) }
+        composable("expensetracker") { MetroExpenseScreen(navController) }
         composable("dashboard") { DashboardHomeScreen(navController) }
         composable("metromap") { MetroMapScreen() }
 
@@ -255,7 +256,7 @@ fun NavigationGraph(navController: NavHostController) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RoutePlannerScreen() {
+fun LegacyRoutePlannerScreen() {
 
     val context = LocalContext.current
     val stations = remember { loadMetroStations(context) }
@@ -417,8 +418,9 @@ fun DashboardHomeScreen(navController: NavHostController) {
     val day = remember { java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_WEEK) }
 
     // Fake stats for now
-    val trips = prefs.getInt("trips", 8)
-    val savings = trips * 25
+    val weeklyStats = remember { MetroExpenseManager.getWeeklyStats(context) }
+    val trips = if (weeklyStats.first > 0) weeklyStats.first else prefs.getInt("trips", 8)
+    val savings = if (weeklyStats.second > 0) weeklyStats.second else trips * 25
 
     val bestTime = when {
         hour in 8..10 -> "Rush Hour"
@@ -495,7 +497,7 @@ fun DashboardHomeScreen(navController: NavHostController) {
                 columns = GridCells.Fixed(2),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(760.dp),
+                    .height(780.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 userScrollEnabled = false
@@ -527,6 +529,12 @@ fun DashboardHomeScreen(navController: NavHostController) {
                 }
                 item { DashboardNavCard("Route Planner", Icons.Default.Subway) {
                     navController.navigate("routeplanner")
+                }
+            }
+
+            item {
+                DashboardNavCard("Expense Tracker", Icons.Default.AccountBalanceWallet) {
+                    navController.navigate("expensetracker")
                     }
                 }
                 item {
